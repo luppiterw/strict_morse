@@ -21,6 +21,7 @@ public class MorseKeyUtil
             {
                 AtomKey atomKey = field.getAnnotation(AtomKey.class);
                 Log.d("Hughie", "atomKey.atomKeyValue()=\'" + atomKey.atomKeyValue() + "\' is a " + atomKey.atomKeyType());
+                Log.d("Hughie", "atomKey.atomKeyValue()=\'" + atomKey.atomKeyValue() + "\' is a " + atomKey.atomKeyType());
             }
         }
     }

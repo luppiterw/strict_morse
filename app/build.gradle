@@ -1,9 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        strictmorse {
+            keyAlias 'ViviSystem'
+            keyPassword 'wanghui2015'
+            storeFile file('strictmorse.jks')
+            storePassword 'wanghui2015'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
-
     defaultConfig {
         applicationId "vivisystem.com.i5cnc.strict_morse"
         minSdkVersion 16
@@ -15,12 +22,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.strictmorse
+        }
+        debug {
+            signingConfig signingConfigs.strictmorse
         }
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
 }

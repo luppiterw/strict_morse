@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity
 
         MorseKeyUtil.getKeyInfo(MorseKey.class);
 
+        MorseKey tmpMorseKey = new MorseKey();
+        MorseKeyUtil.getKeyInfo(tmpMorseKey.getClass());
+
 
     }
 }

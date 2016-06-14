@@ -1,4 +1,4 @@
-package vivisystem.com.i5cnc.strict_morse;
+package vivisystem.com.strict_morse;
 
 import Notation.AtomKey;
 

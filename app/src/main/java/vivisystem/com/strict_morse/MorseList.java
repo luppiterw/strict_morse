@@ -1,4 +1,4 @@
-package vivisystem.com.i5cnc.strict_morse;
+package vivisystem.com.strict_morse;
 
 /**
  * Created by hughie on 16/6/12.

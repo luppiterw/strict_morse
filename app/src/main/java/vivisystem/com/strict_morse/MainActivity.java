@@ -1,10 +1,8 @@
-package vivisystem.com.i5cnc.strict_morse;
+package vivisystem.com.strict_morse;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-
-import Notation.AtomKey;
 
 public class MainActivity extends AppCompatActivity
 {

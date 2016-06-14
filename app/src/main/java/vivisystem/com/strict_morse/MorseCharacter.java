@@ -15,6 +15,7 @@ public class MorseCharacter implements Serializable
     {
         mMorseCharacters = MorseAlphabet.values();
         mTextLines = new ArrayList<>();
+        mTextLines2 = new ArrayList<>();
     }
 
     public static MorseAlphabet[] getCharacters()
@@ -45,6 +46,23 @@ public class MorseCharacter implements Serializable
         Log.d("Hughie", "***printInnerCharacters ends***");
     }
 
+
+    public static void printTextLines(List<String> values)
+    {
+        if(values == null)
+        {
+            Log.d("Hughie", "***printTextLines stopped because of null values***");
+            return;
+        }
+        Log.d("Hughie", "***printTextLines starts***");
+        int i = 0;
+        for (String line : values)
+        {
+            Log.d("Hughie", "   " + (++i) + "=[" + line + "]");
+        }
+        Log.d("Hughie", "***printTextLines ends***");
+    }
+
     public void resetTextLines(String[] from)
     {
         mTextLines.clear();
@@ -56,4 +74,16 @@ public class MorseCharacter implements Serializable
         return mTextLines;
     }
     private List<String> mTextLines;
+
+    public void resetTextLines2(String[] from)
+    {
+        mTextLines2.clear();
+        for (String text: from)
+            mTextLines2.add(text);
+    }
+    public List<String> getTextLines2()
+    {
+        return mTextLines2;
+    }
+    private transient List<String> mTextLines2;
 }

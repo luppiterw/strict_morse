@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity
     private static final String[] writeLines = {
         "Line 1", "Line 2", "ABD AFFF", "SSSS", "测试中文 四大 ssa"
     };
+    private static final String[] writeLines2 = {
+            "2 Line 12", "2 Line 2", "2 ABD AFFF", "2 SSSS", "2 测试中文 四大 ssa"
+    };
     private Button mButtonTestWrite;
     private View.OnClickListener mButtonTestWriteOnClickListener = new View.OnClickListener()
     {
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(MorseDef.PATH_STORE_ALPHABET));
                     MorseCharacter character = new MorseCharacter();
                     character.resetTextLines(writeLines);
+                    character.resetTextLines2(writeLines2);
 
                     objectOutputStream.writeObject(character);
                     objectOutputStream.close();
@@ -137,21 +141,14 @@ public class MainActivity extends AppCompatActivity
                 ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(MorseDef.PATH_STORE_ALPHABET));
 
                 MorseCharacter morseCharacter = (MorseCharacter)objectInputStream.readObject();
-
-                Log.d("Hughie", "mButtonTestReadOnClickListener.onClick read = " + morseCharacter);
+                Log.d("Hughie", "mButtonTestReadOnClickListener.onClick read 1= " + morseCharacter);
                 if(morseCharacter == null)
                 {
-                    Log.d("Hughie", "mButtonTestReadOnClickListener.onClick read is NULL");
+                    Log.d("Hughie", "mButtonTestReadOnClickListener.onClick read 1 is NULL");
                     return;
                 }
-
-                List<String> textLines = morseCharacter.getTextLines();
-
-                int i = 0;
-                for(String line : textLines)
-                {
-                    Log.d("Hughie", "   " + (++i) + "=[" + line + "]");
-                }
+                MorseCharacter.printTextLines(morseCharacter.getTextLines());
+                MorseCharacter.printTextLines(morseCharacter.getTextLines2());
 
 //                morseCharacter.printInnerCharacters();
             }

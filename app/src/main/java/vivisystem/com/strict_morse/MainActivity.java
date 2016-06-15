@@ -1,11 +1,14 @@
 package vivisystem.com.strict_morse;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,6 +19,8 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.util.List;
+
+import vivisystem.com.strict_morse.tests.MorseUtility;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -30,6 +35,8 @@ public class MainActivity extends AppCompatActivity
         mButtonTestWrite.setOnClickListener(mButtonTestWriteOnClickListener);
         mButtonTestRead = (Button)findViewById(R.id.button_test_read);
         mButtonTestRead.setOnClickListener(mButtonTestReadOnClickListener);
+        mButtonTestLoadWeixin = (Button)findViewById(R.id.button_test_load_weixin);
+        mButtonTestLoadWeixin.setOnClickListener(mButtonTestLoadWeixinOnClickListener);
 
 
 
@@ -162,6 +169,25 @@ public class MainActivity extends AppCompatActivity
                 e.printStackTrace();
                 Log.d("Hughie", "mButtonTestReadOnClickListener.onClick ClassNotFoundException " + e.toString());
             }
+
+
+
+
+
         }
     };
+
+
+    private Button mButtonTestLoadWeixin;
+    private View.OnClickListener mButtonTestLoadWeixinOnClickListener = new View.OnClickListener()
+    {
+        @Override
+        public void onClick(View v)
+        {
+            Toast.makeText(MainActivity.this, "Loading WeiXin", Toast.LENGTH_LONG).show();
+            MorseUtility.call(MainActivity.this);
+        }
+    };
+
+
 }

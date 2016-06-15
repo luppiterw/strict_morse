@@ -32,6 +32,12 @@
             android:layout_height="100dp"
             android:text="TestingRead"/>
 
+        <Button
+            android:id="@+id/button_test_load_weixin"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:text="TestingLoadWeixin"/>
+
     </LinearLayout>
 
 </RelativeLayout>

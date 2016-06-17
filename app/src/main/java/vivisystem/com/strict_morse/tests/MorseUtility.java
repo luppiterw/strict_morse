@@ -5,12 +5,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 
+import java.io.FileDescriptor;
+import java.io.RandomAccessFile;
+import java.nio.IntBuffer;
+import java.nio.MappedByteBuffer;
+
 /**
  * Created by hughie on 16/6/15.
  */
 public class MorseUtility
 {
-    public static void call(Context context)
+    public static void callWeiXin(Context context)
     {
         if(context == null)
         {

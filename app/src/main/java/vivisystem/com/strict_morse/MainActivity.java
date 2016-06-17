@@ -1,11 +1,8 @@
 package vivisystem.com.strict_morse;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -16,9 +13,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Constructor;
-import java.util.List;
 
 import vivisystem.com.strict_morse.tests.MorseUtility;
 
@@ -185,7 +179,7 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View v)
         {
             Toast.makeText(MainActivity.this, "Loading WeiXin", Toast.LENGTH_LONG).show();
-            MorseUtility.call(MainActivity.this);
+            MorseUtility.callWeiXin(MainActivity.this);
         }
     };
 

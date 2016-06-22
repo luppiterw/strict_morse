@@ -1,5 +1,8 @@
 package vivisystem.com.strict_morse;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,10 +16,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import dalvik.system.DexClassLoader;
-import dalvik.system.PathClassLoader;
 import vivisystem.com.strict_morse.tests.MorseUtility;
+import vivisystem.com.test_jni.LibLoader;
 import vivisystem.com.test_jni.TestNative;
 
 public class MainActivity extends AppCompatActivity
@@ -184,17 +187,22 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(MainActivity.this, "Loading WeiXin", Toast.LENGTH_LONG).show();
             MorseUtility.callWeiXin(MainActivity.this);
             Log.d("Hughie", "mButtonTestLoadWeixinOnClickListener.onClick TestNative.init()=" + TestNative.init());
+
+            LibLoader.copyFromAssetsAndLoad(MainActivity.this);
         }
     };
 
 
     private void forClassLoader()
     {
+        Log.d("Hughie",  " File.separator=" +File.separator + " File.separatorChar=" + File.separatorChar +
+                " File.pathSeparator=" + File.pathSeparator  + " File.pathSeparatorChar" + File.pathSeparatorChar);
+
         int i = 0;
         ClassLoader classLoader = getClassLoader();
         if(classLoader != null)
         {
-            Log.d("Hughie",  (++i) + " forClassLoader classLoader = " + classLoader.toString());
+            Log.d("Hughie",  (++i) + " forClassLoader classLoader = " + classLoader.toString() );
 
             while(classLoader.getParent() != null)
             {
@@ -203,7 +211,10 @@ public class MainActivity extends AppCompatActivity
             }
         }
 
+        AtomicBoolean asd = new AtomicBoolean(false);
 
     }
+
+
 
 }

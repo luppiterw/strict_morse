@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import vivisystem.com.strict_morse.tests.MorseUtility;
+import vivisystem.com.test_jni.TestNative;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -180,6 +181,7 @@ public class MainActivity extends AppCompatActivity
         {
             Toast.makeText(MainActivity.this, "Loading WeiXin", Toast.LENGTH_LONG).show();
             MorseUtility.callWeiXin(MainActivity.this);
+            Log.d("Hughie", "mButtonTestLoadWeixinOnClickListener.onClick TestNative.init()=" + TestNative.init());
         }
     };
 

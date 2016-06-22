@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+import dalvik.system.DexClassLoader;
+import dalvik.system.PathClassLoader;
 import vivisystem.com.strict_morse.tests.MorseUtility;
 import vivisystem.com.test_jni.TestNative;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity
 
         Log.d("Hughie", "" + MorseCharacter.getCharacters());
 //        MorseCharacter.printCharacters();
-
+        forClassLoader();
         Log.d("Hughie", "MainActivity.onCreate() called finished.");
     }
 
@@ -185,5 +187,23 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+
+    private void forClassLoader()
+    {
+        int i = 0;
+        ClassLoader classLoader = getClassLoader();
+        if(classLoader != null)
+        {
+            Log.d("Hughie",  (++i) + " forClassLoader classLoader = " + classLoader.toString());
+
+            while(classLoader.getParent() != null)
+            {
+                classLoader = classLoader.getParent();
+                Log.d("Hughie",  (++i) + " forClassLoader classLoader.getParent() = " + classLoader.toString());
+            }
+        }
+
+
+    }
 
 }

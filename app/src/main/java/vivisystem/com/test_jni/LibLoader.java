@@ -41,8 +41,8 @@ public class LibLoader
     public static void copyFromAssetsAndLoad(Context context)
     {
         File dir = context.getDir("jniLibs", Activity.MODE_PRIVATE);
-        File distFile = new File(dir.getAbsolutePath() + File.separator + "libtestfunc.so");
-        if(LibLoader.copyFileFromAssets(context, "libtestfunc.so", distFile.getAbsolutePath()))
+        File distFile = new File(dir.getAbsolutePath() + File.separator + "libtestfunssc.so");
+        if(LibLoader.copyFileFromAssets(context, "libtestfunssc.so", distFile.getAbsolutePath()))
         {
             File file = new File(distFile.getAbsolutePath());
             Log.d("Hughie", "000====> " + distFile.getAbsolutePath() + " ?=" + file.exists());
@@ -51,21 +51,21 @@ public class LibLoader
 
             System.load(distFile.getAbsolutePath());
 
-            try
-            {
-                Class<?> clazz = Class.forName("testjnis.TestNative");
-
-                Log.d("Hughie", "000====> clazz= " + clazz);
-
-            }
-            catch (ClassNotFoundException e)
-            {
-                Log.d("Hughie", "000====> ClassNotFoundException");
-                e.printStackTrace();
-            }
-            Log.d("Hughie", "000====> " + LibLoader.firstfunction());
+//            try
+//            {
+//                Class<?> clazz = Class.forName("testjnis.VoiceShortNative");
+//
+//                Log.d("Hughie", "000====> clazz= " + clazz);
+//
+//            }
+//            catch (ClassNotFoundException e)
+//            {
+//                Log.d("Hughie", "000====> ClassNotFoundException");
+//                e.printStackTrace();
+//            }
+//            Log.d("Hughie", "000====> " + LibLoader.firstfunction());
         }
     }
 
-    public static native int firstfunction();
+//    public static native int firstfunction();
 }

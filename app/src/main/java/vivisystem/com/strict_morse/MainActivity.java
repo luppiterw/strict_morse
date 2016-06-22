@@ -20,6 +20,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import vivisystem.com.strict_morse.tests.MorseUtility;
 import vivisystem.com.test_jni.LibLoader;
+import vivisystem.com.test_jni.NormalLoadSO;
 import vivisystem.com.test_jni.TestNative;
 
 public class MainActivity extends AppCompatActivity
@@ -186,9 +187,11 @@ public class MainActivity extends AppCompatActivity
         {
             Toast.makeText(MainActivity.this, "Loading WeiXin", Toast.LENGTH_LONG).show();
             MorseUtility.callWeiXin(MainActivity.this);
-            Log.d("Hughie", "mButtonTestLoadWeixinOnClickListener.onClick TestNative.init()=" + TestNative.init());
+            Log.d("Hughie", "mButtonTestLoadWeixinOnClickListener.onClick VoiceShortNative.init()=" + TestNative.init());
 
-            LibLoader.copyFromAssetsAndLoad(MainActivity.this);
+//            LibLoader.copyFromAssetsAndLoad(MainActivity.this);
+//            NormalLoadSO normalLoadSO = new NormalLoadSO();
+            NormalLoadSO.start();
         }
     };
 

@@ -15,10 +15,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import vivisystem.com.strict_morse.tests.MorseUtility;
-import vivisystem.com.test_HardWare.CPUChecker;
+import vivisystem.com.test_system_checker.BatteryChecker;
+import vivisystem.com.test_system_checker.CPUChecker;
 import vivisystem.com.test_jni.NormalLoadSO;
 import vivisystem.com.test_jni.TestNative;
+import vivisystem.com.test_system_checker.MemoryChecker;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity
         Log.d("Hughie", "" + MorseCharacter.getCharacters());
 //        MorseCharacter.printCharacters();
         forClassLoader();
+
+        BatteryChecker.registerReceiver(MainActivity.this);
+
         Log.d("Hughie", "MainActivity.onCreate() called finished.");
     }
 
@@ -190,6 +194,7 @@ public class MainActivity extends AppCompatActivity
 //            NormalLoadSO normalLoadSO = new NormalLoadSO();
             NormalLoadSO.start();
             CPUChecker.print();
+            MemoryChecker.print();
         }
     };
 

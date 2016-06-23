@@ -1,4 +1,4 @@
-package vivisystem.com.test_HardWare;
+package vivisystem.com.test_system_checker;
 
 import android.util.Log;
 

@@ -189,9 +189,7 @@ public class MainActivity extends AppCompatActivity
 //            ExternalLoadSO.copyFromAssetsAndLoad(MainActivity.this);
 //            NormalLoadSO normalLoadSO = new NormalLoadSO();
             NormalLoadSO.start();
-            Log.d("Hughie", "CPU频率(KHZ) 最小=" + CPUChecker.getMinCpuFreq() +
-                    " 最大=" + CPUChecker.getMaxCpuFreq() +
-                    " 当前=" + CPUChecker.getCurCpuFreq());
+            CPUChecker.print();
         }
     };
 

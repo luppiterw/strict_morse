@@ -1,8 +1,5 @@
 package vivisystem.com.strict_morse;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,7 +16,7 @@ import java.io.ObjectOutputStream;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import vivisystem.com.strict_morse.tests.MorseUtility;
-import vivisystem.com.test_jni.LibLoader;
+import vivisystem.com.test_HardWare.CPUChecker;
 import vivisystem.com.test_jni.NormalLoadSO;
 import vivisystem.com.test_jni.TestNative;
 
@@ -186,12 +183,15 @@ public class MainActivity extends AppCompatActivity
         public void onClick(View v)
         {
             Toast.makeText(MainActivity.this, "Loading WeiXin", Toast.LENGTH_LONG).show();
-            MorseUtility.callWeiXin(MainActivity.this);
+//            MorseUtility.callWeiXin(MainActivity.this);
             Log.d("Hughie", "mButtonTestLoadWeixinOnClickListener.onClick VoiceShortNative.init()=" + TestNative.init());
 
-//            LibLoader.copyFromAssetsAndLoad(MainActivity.this);
+//            ExternalLoadSO.copyFromAssetsAndLoad(MainActivity.this);
 //            NormalLoadSO normalLoadSO = new NormalLoadSO();
             NormalLoadSO.start();
+            Log.d("Hughie", "CPU频率(KHZ) 最小=" + CPUChecker.getMinCpuFreq() +
+                    " 最大=" + CPUChecker.getMaxCpuFreq() +
+                    " 当前=" + CPUChecker.getCurCpuFreq());
         }
     };
 

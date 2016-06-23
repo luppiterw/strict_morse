@@ -13,7 +13,7 @@ import java.io.InputStream;
 /**
  * Created by hughie on 16/6/22.
  */
-public class LibLoader
+public class ExternalLoadSO
 {
     public static boolean copyFileFromAssets(Context context, String fileName, String path) {
         boolean copyIsFinish = false;
@@ -42,7 +42,7 @@ public class LibLoader
     {
         File dir = context.getDir("jniLibs", Activity.MODE_PRIVATE);
         File distFile = new File(dir.getAbsolutePath() + File.separator + "libtestfunssc.so");
-        if(LibLoader.copyFileFromAssets(context, "libtestfunssc.so", distFile.getAbsolutePath()))
+        if(ExternalLoadSO.copyFileFromAssets(context, "libtestfunssc.so", distFile.getAbsolutePath()))
         {
             File file = new File(distFile.getAbsolutePath());
             Log.d("Hughie", "000====> " + distFile.getAbsolutePath() + " ?=" + file.exists());
@@ -63,7 +63,7 @@ public class LibLoader
 //                Log.d("Hughie", "000====> ClassNotFoundException");
 //                e.printStackTrace();
 //            }
-//            Log.d("Hughie", "000====> " + LibLoader.firstfunction());
+//            Log.d("Hughie", "000====> " + ExternalLoadSO.firstfunction());
         }
     }
 

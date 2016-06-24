@@ -128,16 +128,20 @@ public class BatteryChecker {
      *  不能通过AndroidManifest.xml注册，而且作为系统 protected intent ，
      *  只能通过被动获取，不能通过主动方式获取
      * */
-    public static void registerReceiver(Context context)
-    {
+    public static void registerReceiver(Context context) {
+        /**
+         * 因为ACTION_BATTERY_CHANGED是sticky-broadcast方式，可以不用设置接收器，
+         * 且不会像一般的broadcast(通过registerReceiver方式注册而非配置文件)会在activity暂停之后失效，
+         * 需要重新registerReceiver才能生效
+         * */
         context.registerReceiver(batteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
-//        Intent stickyIntent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));    ///<  通过此方式直接读取
+        ///<  sticky-intent可以通过此方式直接读取
+//        Intent stickyIntent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
 
     }
 
-    public static void unregisterReceiver(Context context)
-    {
+    public static void unregisterReceiver(Context context) {
         context.unregisterReceiver(batteryReceiver);
     }
 

@@ -19,6 +19,7 @@ import vivisystem.com.test_system_checker.BatteryChecker;
 import vivisystem.com.test_system_checker.CPUChecker;
 import vivisystem.com.test_jni.NormalLoadSO;
 import vivisystem.com.test_jni.TestNative;
+import vivisystem.com.test_system_checker.DockChecker;
 import vivisystem.com.test_system_checker.MemoryChecker;
 
 public class MainActivity extends AppCompatActivity
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         forClassLoader();
 
         BatteryChecker.registerReceiver(MainActivity.this);
+        DockChecker.registerReceiver(MainActivity.this);
 
         Log.d("Hughie", "MainActivity.onCreate() called finished.");
     }

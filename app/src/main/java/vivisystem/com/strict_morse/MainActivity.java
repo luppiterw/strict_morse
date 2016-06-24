@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity
             }
 
 
-
+//            BatteryChecker.registerReceiver(MainActivity.this);
 
 
         }
@@ -195,6 +195,8 @@ public class MainActivity extends AppCompatActivity
             NormalLoadSO.start();
             CPUChecker.print();
             MemoryChecker.print();
+
+//            BatteryChecker.unregisterReceiver(MainActivity.this);
         }
     };
 

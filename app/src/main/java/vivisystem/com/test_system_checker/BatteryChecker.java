@@ -89,26 +89,32 @@ public class BatteryChecker {
         String comment;
     }
 
+    public static void doReceive(Context context, Intent intent){
+        batteryReceiver.onReceive(context, intent);
+    }
     private static BroadcastReceiver batteryReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
 
-            int status = intent.getIntExtra("status", 0);
-            int health = intent.getIntExtra("health", 0);
-            boolean present = intent.getBooleanExtra("present", false);
-            int level = intent.getIntExtra("level", 0);
-            int scale = intent.getIntExtra("scale", 0);
-            int plugged = intent.getIntExtra("plugged", 0);
-            int voltage = intent.getIntExtra("voltage", 0);
-            int temperature = intent.getIntExtra("temperature", 0) / 10;
-            String technology = intent.getStringExtra("technology");
+            if(intent == null)// || intent.getAction() != Intent.ACTION_BATTERY_CHANGED)
+                return;
 
-            Log.d("Hughie", "**********Battery Information**********" +
+            int status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, 0);
+            int health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0);
+            boolean present = intent.getBooleanExtra(BatteryManager.EXTRA_PRESENT, false);
+            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
+            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE, 0);
+            int plugged = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0);
+            int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
+            int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10;
+            String technology = intent.getStringExtra(BatteryManager.EXTRA_TECHNOLOGY);
+
+            Log.d("Hughie", "********** Battery Information ********** Action = " + intent.getAction() +
                     "\n     status = " + status + " " + BatteryStatus.getComment(status) +
                     "\n     health = " + health + " " + BatteryHealth.getComment(health) +
                     "\n     present = " + present + " " +
-                    "\n     level = " + level + "%" +
-                    "\n     scale = " + scale + "%" +
+                    "\n     level = " + level + "" +
+                    "\n     scale = " + scale + "" +
                     "\n     plugged = " + plugged + " " + BatteryPlugged.getComment(plugged) +
                     "\n     voltage = " + voltage + "mV" +
                     "\n     temperature = " + temperature + "°" +
@@ -117,9 +123,36 @@ public class BatteryChecker {
         }
     };
 
+    /**
+     *  Intent.ACTION_BATTERY_CHANGED只能通过registerReceiver注册，
+     *  不能通过AndroidManifest.xml注册，而且作为系统 protected intent ，
+     *  只能通过被动获取，不能通过主动方式获取
+     * */
     public static void registerReceiver(Context context)
     {
         context.registerReceiver(batteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+//        Intent stickyIntent = context.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));    ///<  通过此方式直接读取
+
+    }
+
+    public static void unregisterReceiver(Context context)
+    {
+        context.unregisterReceiver(batteryReceiver);
     }
 
 }
+
+/**
+ *在Android中，BatteryService.java提供了电池相关的访问接口，实际上也是从系统文件中获取相关信息的，
+ * 理论上可以直接从下述文件获取信息，而不需要通过Service-Intent-Broadcast的方式进行获取.
+ #define AC_ONLINE_PATH "/sys/class/power_supply/ac/online"
+ #define USB_ONLINE_PATH "/sys/class/power_supply/usb/online"
+ #define BATTERY_STATUS_PATH "/sys/class/power_supply/battery/status"
+ #define BATTERY_HEALTH_PATH "/sys/class/power_supply/battery/health"
+ #define BATTERY_PRESENT_PATH "/sys/class/power_supply/battery/present"
+ #define BATTERY_CAPACITY_PATH "/sys/class/power_supply/battery/capacity"
+ #define BATTERY_VOLTAGE_PATH "/sys/class/power_supply/battery/batt_vol"
+ #define BATTERY_TEMPERATURE_PATH "/sys/class/power_supply/battery/batt_temp"
+ #define BATTERY_TECHNOLOGY_PATH "/sys/class/power_supply/battery/technology"
+ * */

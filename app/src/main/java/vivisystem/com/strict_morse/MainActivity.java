@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity
 //        MorseCharacter.printCharacters();
         forClassLoader();
 
-        BatteryChecker.registerReceiver(MainActivity.this);
-        DockChecker.registerReceiver(MainActivity.this);
+//        BatteryChecker.registerReceiver(MainActivity.this);
+//        DockChecker.registerReceiver(MainActivity.this);
 
         Log.d("Hughie", "MainActivity.onCreate() called finished.");
     }
@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity
 //            NormalLoadSO normalLoadSO = new NormalLoadSO();
             NormalLoadSO.start();
             CPUChecker.print();
-            MemoryChecker.print();
+            MemoryChecker.print(MainActivity.this);
 
 //            BatteryChecker.unregisterReceiver(MainActivity.this);
         }
